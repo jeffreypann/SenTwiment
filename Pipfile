@@ -12,6 +12,7 @@ flask = "*"
 textblob = "*"
 flask-bootstrap = "*"
 gunicorn = "*"
+boto = "*"
 
 [requires]
 python_version = "3.7"

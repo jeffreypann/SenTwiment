@@ -5,13 +5,6 @@ import datetime
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import requests
 
-os.environ['CONSUMER_KEY'] = "HffZ11UXr7abx5kGpRDjIV2AC"
-os.environ['CONSUMER_SECRET'] = "6kxxi009zTJm5Z8cnusQDcdel0bHZaYClmFOoZg4O6eKSkHOiM"
-os.environ['ACCESS_TOKEN'] = "1071867319712923655-OiCe9KXb0NMMT9fNR5Rs0vO76eXqYB"
-os.environ['ACCESS_TOKEN_SECRET'] = "ck9n34DhzlVwwPZ7VGy2cl3QiZ6CpSmeni4n8djrByrl2"
-os.environ['GIPHY_TOKEN'] = "VdVvDg8BK8nVeaKOuLGYJIJ9JINWGLA6"
-
-
 CONSUMER_KEY = os.environ.get('CONSUMER_KEY', None)
 CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET', None)
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', None)
