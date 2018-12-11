@@ -1,0 +1,123 @@
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+{{super()}}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+{% endblock%}
+
+{% block styles %}
+{{super()}}
+<link href="{{url_for('.static', filename='styles/home.css')}}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+{% endblock %}
+
+{% block title %}How Happy is @{{user}}? - SenTwiment{% endblock %}
+
+{% block navbar %}
+  <div class="container">
+    <nav class="navbar navbar-static-top">
+  <a class="navbar-brand abs" href="/"><span id="title">SenTwiment</span></a>
+  </nav>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class = "container">
+  <div class="jumbotron" id = "orange">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 style="font-size: 30px !important;">@{{user}} IS
+        <span>
+          {%if emotion == 1%} HAPPY!*
+          {% endif %}
+          {%if emotion == 0%} NEUTRAL*
+          {% endif %}
+          {%if emotion == -1%} UNHAPPY...*
+          {% endif %}
+        </span>
+        </h2>
+        <p style="color:#4F443E;">
+          This website uses <a href="https://github.com/cjhutto/vaderSentiment">VADER Sentiment</a> and <a href="https://textblob.readthedocs.io/en/dev/">TextBlob</a> to identify the
+          negative and positive (bi)polarity of @{{user}}'s most recent tweets.
+        </p>
+        <h2 style="color:#4F443E;">
+          Currently, a sentiment analysis of @{{user}}'s timeline over his last 200 tweets returns a weighted average
+          polarity of <span class="sentiment">{{ '%.3f' % sentiment  }}</span>.
+        </h2>
+        <h2 style="color:#4F443E;">
+          Try it for yourself! Enter twitter handle of someone you want to Analyze
+        </h2>
+    <form action="{{ url_for('search') }}" method="post">
+      <h2>
+        <span style="color:#4F443E;">@</span>
+        <input type="text" name="user">
+        <input type="submit" value="Analyze!" class="btn btn-primary">
+      </h2>
+    </form>
+      </div>
+      <div class = "col-md-6">
+          <div id="gif">
+            <iframe src={{gif}} width="480" height="300" frameBorder="0" class="giphy-embed"></iframe>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron" id="grey">
+    <div class="row">
+      <div class="col-md-12"><h1>VIZUALIZATION</h1></div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+          {% for tweet in twitter_data["tweets"] %}
+            {%if tweet["mood"] == 1%}
+              {% set color = '#5FC8B8'%}
+            {% endif %}
+            {%if tweet["mood"] == 0%}
+              {% set color = 'white'%}
+            {% endif %}
+            {%if tweet["mood"] == -1%}
+              {% set color = '#DF3D26'%}
+            {% endif %}
+              <div style="display:inline;" data-toggle="popover" data-trigger="hover" data-container="body" data-html="true" data-content="Polarity: {{ '%.3f' % tweet["sentiment"]}}<br />Content: {{ tweet["message"]}}">
+                <svg width="40" height="40">
+                  <rect x="0" y="0" width="100%" height="100%" style="fill:{{color}}"/>
+                </svg>
+              </div>
+          {% endfor %}
+      </div>
+      <div class="col-md-4">
+        <a class="twitter-timeline" data-height="600" data-theme="light" data-link-color="#E81C4F" href="https://twitter.com/{{user}}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron" id="red">
+  </div>
+  <div class="jumbotron" id="redorange">
+  </div>
+  <div class="jumbotron" id="purple">
+  </div>
+  <div class="jumbotron" id="brown">
+  </div>
+  <div class="jumbotron" id="coffee">
+  </div>
+  <div class="jumbotron" id="about">
+    <div class="row">
+      <h1 id="about-header">ABOUT:</h1>
+      <p> Website created by Jeffrey Pan<br>
+          Contact: <a href="mailto:jeffreypann@gmail.com">jeffreypann@gmail.com</a><br>
+          Source on <a href="https://github.com/jeffreypann/SenTwiment">Github</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script>
+$('[data-toggle="popover"]').popover({
+  placement: 'bottom'
+});
+</script>
+{% endblock %}

@@ -1,0 +1,180 @@
+html {
+  font-size: 1rem !important;
+}
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem !important;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem !important;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  html {
+    font-size: 1.8rem !important;
+  }
+}
+
+h1 {
+  cursor: default;
+  font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+  font-weight: 700 !important;
+  font-size: 36px !important;
+  letter-spacing:.05em;
+}
+
+h2 {
+  cursor: default;
+  font-family: 'PT Serif', serif;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  letter-spacing:.05em;
+  line-height:1.0;
+}
+
+p {
+  cursor: default;
+  font-family: 'PT Serif', serif;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  letter-spacing:.05em;
+  line-height:1.0;
+}
+
+.sentiment {
+}
+
+.jumbotron {
+}
+
+.container .jumbotron {
+  border-radius: 0;
+  color:black;
+}
+
+.popover {
+  max-width:300px;
+}
+
+#orange {
+  background-color:#F78C58;
+}
+
+#green {
+  background-color:#D2D5D8
+}
+
+#red {
+  background-color:#BF3239;
+  padding:0;
+  height:44px;
+}
+
+#redorange {
+  background-color: #D13F35;
+  padding:0;
+  height:34px;
+}
+
+#purple {
+  background-color: #CD2F84;
+  padding:0;
+  height:26px;
+}
+
+#brown {
+  background-color: #624B37;
+  padding:0;
+  height:20px;
+}
+
+#coffee {
+  background-color: #C39240;
+  padding:0;
+  height:14px;
+}
+
+#about {
+  background-color: #F4F7FB;
+  padding-top:0px;
+  padding-bottom:0px;
+}
+
+#about-header {
+  color: #152935;
+  text-decoration: underline;
+  font-size:20px !important;
+}
+
+#about p {
+  font-size:18px !important;
+}
+
+#pablo a {
+  color:black;
+}
+
+.sentiment {
+  text-decoration: underline;
+  color:black;
+}
+
+.navbar {
+  background-color:#3F536F;
+  margin-bottom:5px;
+}
+
+.navbar a {
+  color:#75F65D;
+  font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+  font-weight: 700 !important;
+
+  position: relative;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  cursor: default;
+}
+
+#title:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+
+@media (min-width: 768px) {
+.navbar-brand.abs {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        text-align: center;
+      }
+}
+
+.jumbotron {
+  margin-bottom: 5px;
+}
+
+#gif {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.giphy-embed {
+  margin-top:10px;
+  max-width:inherit;
+}
