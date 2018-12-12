@@ -42,8 +42,10 @@ def sentiment(tweets):
     for tweet in tweets[:TWEET_COUNT]:
         time_created = tweet.created_at
         time_diff = (time_curr - time_created).total_seconds()
-        if time_diff/TIME_INTERVAL <= 100:
+        if time_diff/TIME_INTERVAL <= 60:
             weight = DECAY_RATE**(time_diff/TIME_INTERVAL) # More recent -> greater weight (0.86 ^ (Δt / 1day))
+        else:
+            weight = DECAY_RATE** 60
         vader_pol = vader.polarity_scores(tweet.full_text)['compound']
         blob_pol = TextBlob(tweet.full_text).sentiment.polarity # 2 opinions are better than 1 !!
         sent = (vader_pol + blob_pol) / 2.0
@@ -69,11 +71,13 @@ def get_gif(user):
         "limit": "1"
     }
     r = requests.get(url,params=params)
-    gif = r.json()['data'][0]['embed_url']
-    return gif
-
+    try:
+        gif = r.json()['data'][0]['embed_url']
+        return gif
+    except:
+        gif = "https://giphy.com/embed/v0eHX3n28wvoQ"
+        return gif
 
 
 twitter = twitter_setup()
 vader = SentimentIntensityAnalyzer()
-
